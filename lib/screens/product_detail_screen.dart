@@ -33,7 +33,7 @@ class ProductDetailScreen extends StatelessWidget {
               height: 10,
             ),
             Text(
-              '\$${loadedProduct.title}',
+              '\$${loadedProduct.price}',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 20,

@@ -15,7 +15,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // final product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
-    
+
     return Consumer<Product>(
       builder: (ctx, product, _) => ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -52,6 +52,18 @@ class ProductItem extends StatelessWidget {
               ),
               onPressed: () {
                 cart.addItem(product.id, product.price, product.title);
+                Scaffold.of(context).hideCurrentSnackBar();
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Added item',
+                    ),
+                    duration: Duration(seconds: 2),
+                    action: SnackBarAction(label: 'UNDO', onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    }),
+                  ),
+                );
               },
             ),
           ),
