@@ -30,6 +30,15 @@ dev_dependencies:
   provider: ^4.0.3
   intl: ^0.16.1
   http: ^0.12.0+4
+  shared_preferences: ^0.5.3+1
+  flutter_launcher_icons: ^0.7.2
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/shop_assets/shop.png"
+  adaptive_icon_background: "#191919"
+  adaptive_icon_foreground: "assets/shop_assets/dog-house.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

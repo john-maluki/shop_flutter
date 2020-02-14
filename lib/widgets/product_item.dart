@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/auth.dart';
 import '../providers/cart.dart';
 import '../providers/product.dart';
 import '../screens/product_detail_screen.dart';
@@ -15,6 +16,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // final product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
+    final authData = Provider.of<Auth>(context, listen: false);
 
     return Consumer<Product>(
       builder: (ctx, product, _) => ClipRRect(
@@ -38,7 +40,7 @@ class ProductItem extends StatelessWidget {
                 product.isFavorite ? Icons.favorite : Icons.favorite_border,
               ),
               onPressed: () {
-                product.toggleFavoriteState();
+                product.toggleFavoriteState(authData.token, authData.userId);
               },
             ),
             title: Text(
@@ -59,9 +61,11 @@ class ProductItem extends StatelessWidget {
                       'Added item',
                     ),
                     duration: Duration(seconds: 2),
-                    action: SnackBarAction(label: 'UNDO', onPressed: () {
-                      cart.removeSingleItem(product.id);
-                    }),
+                    action: SnackBarAction(
+                        label: 'UNDO',
+                        onPressed: () {
+                          cart.removeSingleItem(product.id);
+                        }),
                   ),
                 );
               },

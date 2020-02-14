@@ -1,4 +1,4 @@
-package com.example.shop
+package muimi.online
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
